@@ -1,5 +1,7 @@
 package br.com.acert.controledeliveryapi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -27,6 +29,8 @@ public class Produto implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "categoria_id"))
     private Set<Categoria> categorias = new HashSet<>();
 
+    @OneToMany(mappedBy = "id.produto")
+    private Set<ItemPedido> itens = new HashSet<>();
     public Produto(){
 
     }
@@ -72,6 +76,15 @@ public class Produto implements Serializable {
 
     public Set<Categoria> getCategorias() {
         return categorias;
+    }
+
+    @JsonIgnore
+    public Set<Pedido> getPedidos() {
+       Set<Pedido> set = new HashSet<>();
+       for (ItemPedido x : itens){
+           set.add(x.getPedido());
+       }
+       return set;
     }
 
     @Override
