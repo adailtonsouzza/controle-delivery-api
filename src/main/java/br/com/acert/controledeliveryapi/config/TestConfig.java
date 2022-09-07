@@ -1,14 +1,8 @@
 package br.com.acert.controledeliveryapi.config;
 
-import br.com.acert.controledeliveryapi.entities.Categoria;
-import br.com.acert.controledeliveryapi.entities.Cliente;
-import br.com.acert.controledeliveryapi.entities.Pedido;
-import br.com.acert.controledeliveryapi.entities.Produto;
+import br.com.acert.controledeliveryapi.entities.*;
 import br.com.acert.controledeliveryapi.entities.enums.PedidoStatus;
-import br.com.acert.controledeliveryapi.repositories.CategoriaRepository;
-import br.com.acert.controledeliveryapi.repositories.ClienteRepository;
-import br.com.acert.controledeliveryapi.repositories.PedidoRepository;
-import br.com.acert.controledeliveryapi.repositories.ProdutoRepository;
+import br.com.acert.controledeliveryapi.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +26,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ProdutoRepository produtoRepository;
+
+    @Autowired
+    private ItemPedidoRepository itemPedidoRepository;
 
 
     @Override
@@ -72,5 +69,11 @@ public class TestConfig implements CommandLineRunner {
         clienteRepository.saveAll(Arrays.asList(c1, c2));
         pedidoRepository.saveAll(Arrays.asList(p1,p2,p3));
 
+        ItemPedido oi1 = new ItemPedido(p1, pr1, 2, pr1.getPreco());
+        ItemPedido oi2 = new ItemPedido(p1, pr3, 1, pr3.getPreco());
+        ItemPedido oi3 = new ItemPedido(p2, pr3, 2, pr3.getPreco());
+        ItemPedido oi4 = new ItemPedido(p3, pr5, 2, pr5.getPreco());
+
+        itemPedidoRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
     }
 }
