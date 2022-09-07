@@ -82,6 +82,14 @@ public class Pedido implements Serializable {
         return itens;
     }
 
+    public Double getTotal(){
+        double soma = 0;
+        for (ItemPedido x : itens){
+            soma +=  x.getTotalPreco();
+        }
+        return soma;
+    }
+
     public Pagamento getPagamento() {
         return pagamento;
     }
@@ -89,6 +97,8 @@ public class Pedido implements Serializable {
     public void setPagamento(Pagamento pagamento) {
         this.pagamento = pagamento;
     }
+
+
 
     @Override
     public boolean equals(Object o) {
