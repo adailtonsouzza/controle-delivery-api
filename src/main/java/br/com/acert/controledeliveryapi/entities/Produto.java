@@ -7,25 +7,32 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "tb_categoria")
-public class Categoria implements Serializable {
+@Table(name = "tb_produto")
+public class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
 
+    private String nome;
+    private String descricao;
+    private Double preco;
+
+
+    //Usando o set para garantir que o produto não tenha mais que uma categoria
     @Transient
-    private Set<Produto> produtos = new HashSet<>();
-    public Categoria(){
+    private Set<Categoria> categorias = new HashSet<>();
+
+    public Produto(){
 
     }
 
-    public Categoria(Long id, String nome) {
+    public Produto(Long id, String nome, String descricao, Double preco) {
         this.id = id;
         this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;
     }
 
     public Long getId() {
@@ -44,16 +51,32 @@ public class Categoria implements Serializable {
         this.nome = nome;
     }
 
-    public Set<Produto> getProdutos() {
-        return produtos;
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public Set<Categoria> getCategorias() {
+        return categorias;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Categoria categoria = (Categoria) o;
-        return Objects.equals(id, categoria.id);
+        Produto produto = (Produto) o;
+        return Objects.equals(id, produto.id);
     }
 
     @Override
@@ -61,4 +84,3 @@ public class Categoria implements Serializable {
         return Objects.hash(id);
     }
 }
-

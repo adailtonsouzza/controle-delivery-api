@@ -1,7 +1,7 @@
 package br.com.acert.controledeliveryapi.resources;
 
-import br.com.acert.controledeliveryapi.entities.Categoria;
-import br.com.acert.controledeliveryapi.services.CategoriaService;
+import br.com.acert.controledeliveryapi.entities.Produto;
+import br.com.acert.controledeliveryapi.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,20 +12,20 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/categorias")
-public class CategoriaResource {
+@RequestMapping(value = "/produtos")
+public class ProdutoResource {
 
     @Autowired
-    private CategoriaService service;
+    private ProdutoService service;
     @GetMapping
-    public ResponseEntity<List<Categoria>> findAll(){
-        List<Categoria> list = service.findAll();
+    public ResponseEntity<List<Produto>> findAll(){
+        List<Produto> list = service.findAll();
         return  ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value =  "/{id}")
-    public ResponseEntity<Categoria> findById(@PathVariable Long id){
-        Categoria obj = service.findById(id);
+    public ResponseEntity<Produto> findById(@PathVariable Long id){
+        Produto obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 }
