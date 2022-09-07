@@ -58,7 +58,7 @@ public class TestConfig implements CommandLineRunner {
 
         Cliente c1 = new Cliente(null, "Adailton Souza", "75999193244", "12345");
         Cliente c2 = new Cliente(null, "Flaviane Dantas", "75999994098", "12345");
-        Cliente c3 = new Cliente(null, "Lívia Souza", "75999994098", "12345");
+
 
 
 
@@ -75,5 +75,10 @@ public class TestConfig implements CommandLineRunner {
         ItemPedido oi4 = new ItemPedido(p3, pr5, 2, pr5.getPreco());
 
         itemPedidoRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+
+        Pagamento pagamento = new Pagamento(null, Instant.parse("2022-09-07T21:53:07Z"), p1);
+        p1.setPagamento(pagamento);
+
+        pedidoRepository.save(p1);
     }
 }
