@@ -1,8 +1,10 @@
 package br.com.acert.controledeliveryapi.config;
 
+import br.com.acert.controledeliveryapi.entities.Categoria;
 import br.com.acert.controledeliveryapi.entities.Cliente;
 import br.com.acert.controledeliveryapi.entities.Pedido;
 import br.com.acert.controledeliveryapi.entities.enums.PedidoStatus;
+import br.com.acert.controledeliveryapi.repositories.CategoriaRepository;
 import br.com.acert.controledeliveryapi.repositories.ClienteRepository;
 import br.com.acert.controledeliveryapi.repositories.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,19 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private PedidoRepository pedidoRepository;
 
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
 
     @Override
     public void run(String... args) throws Exception {
+
+        Categoria cat1 = new Categoria(null, "Electronics");
+        Categoria cat2 = new Categoria(null, "Books");
+        Categoria cat3 = new Categoria(null, "Computers");
+
+        categoriaRepository.saveAll(Arrays.asList(cat1, cat2,cat3));
+
         Cliente c1 = new Cliente(null, "Adailton Souza", "75999193244", "12345");
         Cliente c2 = new Cliente(null, "Flaviane Dantas", "75999994098", "12345");
         Cliente c3 = new Cliente(null, "Lívia Souza", "75999994098", "12345");
