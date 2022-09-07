@@ -1,5 +1,6 @@
 package br.com.acert.controledeliveryapi.entities;
 
+import br.com.acert.controledeliveryapi.entities.enums.PedidoStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
@@ -18,6 +19,8 @@ public class Pedido implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant momento;
 
+    @Enumerated(EnumType.STRING)
+    private PedidoStatus pedidoStatus;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
@@ -26,9 +29,10 @@ public class Pedido implements Serializable {
     public Pedido() {
     }
 
-    public Pedido(Long id, Instant momento, Cliente cliente) {
+    public Pedido(Long id, Instant momento, PedidoStatus pedidoStatus ,Cliente cliente) {
         this.id = id;
         this.momento = momento;
+        this.pedidoStatus = pedidoStatus;
         this.cliente = cliente;
     }
 
@@ -48,9 +52,19 @@ public class Pedido implements Serializable {
         this.momento = momento;
     }
 
+    public PedidoStatus getPedidoStatus() {
+        return pedidoStatus;
+    }
+
+    public void setPedidoStatus(PedidoStatus pedidoStatus) {
+        this.pedidoStatus = pedidoStatus;
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
+
+
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
