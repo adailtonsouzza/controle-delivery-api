@@ -10,7 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_cliente")
-public class Cliente implements Serializable {
+public class Cliente  implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -19,6 +19,8 @@ public class Cliente implements Serializable {
     private String name;
     private String telefone;
     private String senha;
+
+
 
     @JsonIgnore
     @OneToMany(mappedBy = "cliente")
@@ -82,5 +84,6 @@ public class Cliente implements Serializable {
     public List<Pedido> getPedidos() {
         return pedidos;
     }
+
 
 }

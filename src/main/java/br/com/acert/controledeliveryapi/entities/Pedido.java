@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_pedido")
-public class Pedido implements Serializable {
+public class Pedido  implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -33,6 +33,9 @@ public class Pedido implements Serializable {
 
     @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
     private Pagamento pagamento;
+
+    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private Entrega entrega;
 
     public Pedido() {
     }
@@ -111,5 +114,13 @@ public class Pedido implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public Entrega getEntraga() {
+        return entrega;
+    }
+
+    public void setEntraga(Entrega entraga) {
+        this.entrega = entraga;
     }
 }
