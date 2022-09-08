@@ -28,4 +28,20 @@ public class ClienteService {
     public Cliente inserir(Cliente obj){
         return clienteRepository.save(obj);
     }
+
+    public void delete(Long id){
+        clienteRepository.deleteById(id);
+    }
+
+    public Cliente alterar(Long id, Cliente obj){
+        Cliente entity = clienteRepository.getOne(id);
+        alterarDados(entity, obj);
+        return clienteRepository.save(entity);
+    }
+
+    private void alterarDados(Cliente entity, Cliente obj) {
+        entity.setNome(obj.getNome());
+        entity.setTelefone(obj.getTelefone());
+
+    }
 }

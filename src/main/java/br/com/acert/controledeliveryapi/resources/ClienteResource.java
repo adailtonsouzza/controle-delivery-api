@@ -35,4 +35,16 @@ public class ClienteResource {
                 .buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }
+
+    @DeleteMapping(value =  "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        clienteService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(value =  "/{id}")
+    public ResponseEntity<Cliente> alterar(@PathVariable Long id, @RequestBody Cliente obj){
+        obj = clienteService.alterar(id, obj);
+        return ResponseEntity.ok().body(obj);
+    }
 }
