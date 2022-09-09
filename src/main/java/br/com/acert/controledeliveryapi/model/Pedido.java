@@ -1,6 +1,7 @@
 package br.com.acert.controledeliveryapi.model;
 
 import br.com.acert.controledeliveryapi.model.enums.PedidoStatus;
+import br.com.acert.controledeliveryapi.model.enums.TipoPagamento;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
@@ -24,6 +25,9 @@ public class Pedido  implements Serializable {
     @Enumerated(EnumType.STRING)
     private PedidoStatus pedidoStatus;
 
+    @Enumerated(EnumType.STRING)
+    private TipoPagamento tipoPagamento;
+
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private  Cliente cliente;
@@ -39,12 +43,13 @@ public class Pedido  implements Serializable {
     public Pedido() {
     }
 
-    public Pedido(Long id, Instant momento, PedidoStatus pedidoStatus, Cliente cliente, List<Produto> produtos) {
+    public Pedido(Long id, Instant momento, PedidoStatus pedidoStatus, Cliente cliente, List<Produto> produtos, TipoPagamento tipoPagamento) {
         this.id = id;
         this.momento = momento;
         this.pedidoStatus = pedidoStatus;
         this.cliente = cliente;
         this.produtos = produtos;
+        this.tipoPagamento = tipoPagamento;
     }
 
     public Long getId() {
@@ -81,9 +86,18 @@ public class Pedido  implements Serializable {
         this.cliente = cliente;
     }
 
+    public TipoPagamento getTipoPagamento() {
+        return tipoPagamento;
+    }
+
+    public void setTipoPagamento(TipoPagamento tipoPagamento) {
+        this.tipoPagamento = tipoPagamento;
+    }
+
     public List<Produto> getProdutos() {
         return produtos;
     }
+
 
     public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;

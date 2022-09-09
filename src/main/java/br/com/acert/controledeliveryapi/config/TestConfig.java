@@ -1,10 +1,6 @@
 package br.com.acert.controledeliveryapi.config;
 
 import br.com.acert.controledeliveryapi.model.Cliente;
-import br.com.acert.controledeliveryapi.model.Pagamento;
-import br.com.acert.controledeliveryapi.model.Pedido;
-import br.com.acert.controledeliveryapi.model.Produto;
-import br.com.acert.controledeliveryapi.model.enums.PedidoStatus;
 import br.com.acert.controledeliveryapi.repositories.ClienteRepository;
 import br.com.acert.controledeliveryapi.repositories.PedidoRepository;
 import br.com.acert.controledeliveryapi.repositories.ProdutoRepository;
@@ -13,7 +9,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import java.time.Instant;
 import java.util.Arrays;
 
 @Configuration
