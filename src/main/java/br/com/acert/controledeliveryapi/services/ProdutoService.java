@@ -1,6 +1,6 @@
 package br.com.acert.controledeliveryapi.services;
 
-import br.com.acert.controledeliveryapi.entities.Produto;
+import br.com.acert.controledeliveryapi.model.Produto;
 import br.com.acert.controledeliveryapi.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

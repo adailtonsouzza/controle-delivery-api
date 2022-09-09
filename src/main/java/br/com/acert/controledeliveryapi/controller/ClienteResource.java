@@ -1,13 +1,13 @@
-package br.com.acert.controledeliveryapi.resources;
+package br.com.acert.controledeliveryapi.controller;
 
-import br.com.acert.controledeliveryapi.entities.Cliente;
+import br.com.acert.controledeliveryapi.model.Cliente;
 import br.com.acert.controledeliveryapi.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,22 +18,21 @@ public class ClienteResource {
     private ClienteService clienteService;
     @GetMapping
     public ResponseEntity<List<Cliente>> findAll(){
-        List<Cliente> list = clienteService.findAll();
+        List<Cliente> list = clienteService.buscarTodos();
         return  ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value =  "/{id}")
     public ResponseEntity<Cliente> findById(@PathVariable Long id){
-        Cliente obj = clienteService.findById(id);
+        Cliente obj = clienteService.buscarPorId(id);
         return ResponseEntity.ok().body(obj);
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> inserir(@RequestBody Cliente obj){
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public Cliente cadastroCliente(@Valid @RequestBody Cliente obj){
         obj = clienteService.inserir(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(obj);
+        return obj;
     }
 
     @DeleteMapping(value =  "/{id}")

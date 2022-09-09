@@ -1,8 +1,10 @@
-package br.com.acert.controledeliveryapi.entities;
+package br.com.acert.controledeliveryapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +18,10 @@ public class Cliente  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     private String nome;
     private String telefone;
+    @NotBlank
     private String senha;
 
 

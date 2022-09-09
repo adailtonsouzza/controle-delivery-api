@@ -1,34 +1,41 @@
-package br.com.acert.controledeliveryapi.entities;
+package br.com.acert.controledeliveryapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Objects;
+
+
 @Entity
-@Table(name = "tb_pagamento")
-public class Pagamento implements Serializable {
+@Table(name = "tb_entrega")
+public class Entrega implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Instant momento;
+
+    @Valid
+    @NotNull
+    @Embedded
+    private Destinatario destinatario;
 
     @JsonIgnore
     @OneToOne
     @MapsId
     private Pedido pedido;
 
-    public Pagamento(){
+    public Entrega(){
 
     }
 
-    public Pagamento(Long id, Instant momento, Pedido pedido) {
+    public Entrega(Long id, Destinatario destinatario, Pedido pedido) {
         this.id = id;
-        this.momento = momento;
+        this.destinatario = destinatario;
         this.pedido = pedido;
     }
 
@@ -40,12 +47,12 @@ public class Pagamento implements Serializable {
         this.id = id;
     }
 
-    public Instant getMomento() {
-        return momento;
+    public Destinatario getDestinatario() {
+        return destinatario;
     }
 
-    public void setMomento(Instant momento) {
-        this.momento = momento;
+    public void setDestinatario(Destinatario destinatario) {
+        this.destinatario = destinatario;
     }
 
     public Pedido getPedido() {
@@ -60,8 +67,8 @@ public class Pagamento implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Pagamento pagamento = (Pagamento) o;
-        return Objects.equals(id, pagamento.id);
+        Entrega entrega = (Entrega) o;
+        return Objects.equals(id, entrega.id);
     }
 
     @Override

@@ -1,36 +1,27 @@
-package br.com.acert.controledeliveryapi.entities;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package br.com.acert.controledeliveryapi.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "tb_produto")
-public class Produto implements Serializable {
+public class   Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nome;
     private String descricao;
     private Double preco;
 
+    @ManyToMany(mappedBy = "produtos", cascade = CascadeType.ALL)
+    private List<Pedido> pedidos;
 
-    //Usando o set para garantir que o produto não tenha mais que uma categoria
-    @ManyToMany
-    @JoinTable(name = "tb_produto_categoria",
-            joinColumns = @JoinColumn(name = "produto_id"),
-            inverseJoinColumns = @JoinColumn(name = "categoria_id"))
-    private Set<Categoria> categorias = new HashSet<>();
 
-    @OneToMany(mappedBy = "id.produto")
-    private Set<ItemPedido> itens = new HashSet<>();
+
     public Produto(){
 
     }
@@ -74,18 +65,7 @@ public class Produto implements Serializable {
         this.preco = preco;
     }
 
-    public Set<Categoria> getCategorias() {
-        return categorias;
-    }
 
-    @JsonIgnore
-    public Set<Pedido> getPedidos() {
-       Set<Pedido> set = new HashSet<>();
-       for (ItemPedido x : itens){
-           set.add(x.getPedido());
-       }
-       return set;
-    }
 
     @Override
     public boolean equals(Object o) {

@@ -1,6 +1,6 @@
 package br.com.acert.controledeliveryapi.services;
 
-import br.com.acert.controledeliveryapi.entities.Cliente;
+import br.com.acert.controledeliveryapi.model.Cliente;
 import br.com.acert.controledeliveryapi.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,12 +15,12 @@ public class ClienteService {
     private ClienteRepository clienteRepository;
 
 
-    public List<Cliente> findAll(){
+    public List<Cliente> buscarTodos(){
         return clienteRepository.findAll();
     }
 
 
-    public Cliente findById(Long id){
+    public Cliente buscarPorId(Long id){
        Optional<Cliente> obj =  clienteRepository.findById(id);
        return obj.get();
     }

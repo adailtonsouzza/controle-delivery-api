@@ -1,7 +1,7 @@
-package br.com.acert.controledeliveryapi.resources;
+package br.com.acert.controledeliveryapi.controller;
 
-import br.com.acert.controledeliveryapi.entities.Pedido;
-import br.com.acert.controledeliveryapi.services.PedidoService;
+import br.com.acert.controledeliveryapi.model.Produto;
+import br.com.acert.controledeliveryapi.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,20 +12,20 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/pedidos")
-public class PedidoResource {
+@RequestMapping(value = "/produtos")
+public class ProdutoResource {
 
     @Autowired
-    private PedidoService service;
+    private ProdutoService service;
     @GetMapping
-    public ResponseEntity<List<Pedido>> findAll(){
-        List<Pedido> list = service.findAll();
+    public ResponseEntity<List<Produto>> findAll(){
+        List<Produto> list = service.findAll();
         return  ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value =  "/{id}")
-    public ResponseEntity<Pedido> findById(@PathVariable Long id){
-        Pedido obj = service.findById(id);
+    public ResponseEntity<Produto> findById(@PathVariable Long id){
+        Produto obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 }

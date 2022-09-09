@@ -1,35 +1,34 @@
-package br.com.acert.controledeliveryapi.entities;
+package br.com.acert.controledeliveryapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Objects;
-
 @Entity
-@Table(name = "tb_entrega")
-public class Entrega implements Serializable {
+@Table(name = "tb_pagamento")
+public class Pagamento implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String enderecoCompleto;
+    private Instant momento;
 
     @JsonIgnore
     @OneToOne
     @MapsId
     private Pedido pedido;
 
-    public Entrega(){
+    public Pagamento(){
 
     }
 
-    public Entrega(Long id, String enderecoCompleto, Pedido pedido) {
+    public Pagamento(Long id, Instant momento, Pedido pedido) {
         this.id = id;
-        this.enderecoCompleto = enderecoCompleto;
+        this.momento = momento;
         this.pedido = pedido;
     }
 
@@ -41,12 +40,12 @@ public class Entrega implements Serializable {
         this.id = id;
     }
 
-    public String getEnderecoCompleto() {
-        return enderecoCompleto;
+    public Instant getMomento() {
+        return momento;
     }
 
-    public void setEnderecoCompleto(String enderecoCompleto) {
-        this.enderecoCompleto = enderecoCompleto;
+    public void setMomento(Instant momento) {
+        this.momento = momento;
     }
 
     public Pedido getPedido() {
@@ -61,8 +60,8 @@ public class Entrega implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Entrega entrega = (Entrega) o;
-        return Objects.equals(id, entrega.id);
+        Pagamento pagamento = (Pagamento) o;
+        return Objects.equals(id, pagamento.id);
     }
 
     @Override

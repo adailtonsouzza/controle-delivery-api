@@ -1,14 +1,14 @@
-package br.com.acert.controledeliveryapi.entities;
+package br.com.acert.controledeliveryapi.model;
 
-import br.com.acert.controledeliveryapi.entities.enums.PedidoStatus;
+import br.com.acert.controledeliveryapi.model.enums.PedidoStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "tb_pedido")
@@ -27,24 +27,24 @@ public class Pedido  implements Serializable {
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private  Cliente cliente;
+    @ManyToMany(cascade=CascadeType.PERSIST)
+    @JoinTable(
+            name = "pedido_produto",
+            joinColumns = @JoinColumn(name = "pedido_id"),
+            inverseJoinColumns = @JoinColumn(name = "produto_id")
+    )
+    private List<Produto> produtos = new ArrayList<>();
 
-    @OneToMany(mappedBy =  "id.pedido")
-    private Set<ItemPedido> itens = new HashSet<>();
-
-    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
-    private Pagamento pagamento;
-
-    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
-    private Entrega entrega;
 
     public Pedido() {
     }
 
-    public Pedido(Long id, Instant momento, PedidoStatus pedidoStatus ,Cliente cliente) {
+    public Pedido(Long id, Instant momento, PedidoStatus pedidoStatus, Cliente cliente, List<Produto> produtos) {
         this.id = id;
         this.momento = momento;
         this.pedidoStatus = pedidoStatus;
         this.cliente = cliente;
+        this.produtos = produtos;
     }
 
     public Long getId() {
@@ -81,27 +81,21 @@ public class Pedido  implements Serializable {
         this.cliente = cliente;
     }
 
-    public Set<ItemPedido> getItens() {
-        return itens;
+    public List<Produto> getProdutos() {
+        return produtos;
     }
 
-    public Double getTotal(){
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
+   /* public Double getTotal(){
         double soma = 0;
-        for (ItemPedido x : itens){
+        for (ItensPedido x : itens){
             soma +=  x.getTotalPreco();
         }
         return soma;
-    }
-
-    public Pagamento getPagamento() {
-        return pagamento;
-    }
-
-    public void setPagamento(Pagamento pagamento) {
-        this.pagamento = pagamento;
-    }
-
-
+    } */
 
     @Override
     public boolean equals(Object o) {
@@ -116,11 +110,4 @@ public class Pedido  implements Serializable {
         return Objects.hash(id);
     }
 
-    public Entrega getEntraga() {
-        return entrega;
-    }
-
-    public void setEntraga(Entrega entraga) {
-        this.entrega = entraga;
-    }
 }
