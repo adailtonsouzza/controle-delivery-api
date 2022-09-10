@@ -1,5 +1,6 @@
 package br.com.acert.controledeliveryapi.controller;
 
+import br.com.acert.controledeliveryapi.dto.ClienteDTO;
 import br.com.acert.controledeliveryapi.model.Cliente;
 import br.com.acert.controledeliveryapi.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,9 @@ public class ClienteResource {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Cliente cadastroCliente(@Valid @RequestBody Cliente obj){
-        obj = clienteService.inserir(obj);
-        return obj;
+    public Cliente cadastroCliente(@Valid @RequestBody ClienteDTO clienteDTO){
+       Cliente cliente = clienteService.cadastrar(clienteDTO);
+        return cliente;
     }
 
     @DeleteMapping(value =  "/{id}")
@@ -42,8 +43,8 @@ public class ClienteResource {
     }
 
     @PutMapping(value =  "/{id}")
-    public ResponseEntity<Cliente> alterar(@PathVariable Long id, @RequestBody Cliente obj){
-        obj = clienteService.alterar(id, obj);
-        return ResponseEntity.ok().body(obj);
+    public ResponseEntity<Cliente> alterar(@PathVariable Long id, @RequestBody ClienteDTO clienteDTO){
+        Cliente cliente = clienteService.alterar(id, clienteDTO);
+        return ResponseEntity.ok().body(cliente);
     }
 }

@@ -12,7 +12,9 @@ public class ClienteDTO {
     private String telefone;
     private String senha;
 
+    public ClienteDTO(){
 
+    }
     public ClienteDTO(Cliente cliente){
         this.id = cliente.getId();
         this.nome = cliente.getNome();
@@ -21,10 +23,35 @@ public class ClienteDTO {
 
     }
 
-    public static List<ClienteDTO> converter(List<Cliente> clientes){
-        return  clientes.stream().map(Cliente -> {
-            ClienteDTO vo2 = new ClienteDTO(Cliente);
-            return vo2;
-        }).collect(Collectors.toList());
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }
