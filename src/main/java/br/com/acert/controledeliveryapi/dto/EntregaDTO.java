@@ -1,26 +1,17 @@
-package br.com.acert.controledeliveryapi.model;
+package br.com.acert.controledeliveryapi.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import br.com.acert.controledeliveryapi.model.Pedido;
+import org.springframework.stereotype.Service;
 
-import javax.persistence.*;
-import javax.validation.Valid;
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
+@Service
+public class EntregaDTO {
 
-@Entity
-@Table(name = "tb_entrega")
-public class Entrega implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private Long pedidoId;
 
     @Column( name = "destinatario_nome")
     @NotBlank
@@ -37,24 +28,17 @@ public class Entrega implements Serializable {
     @NotBlank
     private String  bairro;
 
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "entrega")
-    private List<Pedido> pedidos = new ArrayList<>();
-
-
-    public Entrega(){
-
+    public EntregaDTO(){
     }
 
-    public Entrega(Long id, String nome, String logradouro, String numero, String complemento, String bairro) {
+    public EntregaDTO(Long id, Long pedidoId, String nome, String logradouro, String numero, String complemento, String bairro) {
         this.id = id;
+        this.pedidoId = pedidoId;
         this.nome = nome;
         this.logradouro = logradouro;
         this.numero = numero;
         this.complemento = complemento;
         this.bairro = bairro;
-
     }
 
     public Long getId() {
@@ -64,6 +48,8 @@ public class Entrega implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+
 
     public String getNome() {
         return nome;
@@ -103,20 +89,5 @@ public class Entrega implements Serializable {
 
     public void setBairro(String bairro) {
         this.bairro = bairro;
-    }
-
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Entrega entrega = (Entrega) o;
-        return Objects.equals(id, entrega.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 }

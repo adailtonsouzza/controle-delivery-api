@@ -52,6 +52,5 @@ public class ClienteService {
         cliente.setNome(clienteDTO.getNome());
         cliente.setTelefone(clienteDTO.getTelefone());
         cliente.setSenha(encoder.encode(cliente.getSenha()));
-
     }
 }

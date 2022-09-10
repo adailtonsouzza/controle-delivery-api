@@ -1,5 +1,6 @@
 package br.com.acert.controledeliveryapi.services;
 
+import br.com.acert.controledeliveryapi.dto.ProdutoDTO;
 import br.com.acert.controledeliveryapi.model.Produto;
 import br.com.acert.controledeliveryapi.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,13 @@ public class ProdutoService {
     public Produto findById(Long id){
        Optional<Produto> obj =  repository.findById(id);
        return obj.get();
+    }
+
+    public Produto adicionandoProduto(ProdutoDTO produtoDTO){
+        Produto produto = new Produto();
+        produto.setNome(produtoDTO.getNome());
+        produto.setDescricao(produtoDTO.getDescricao());
+        produto.setPreco(produtoDTO.getPreco());
+        return repository.save(produto);
     }
 }

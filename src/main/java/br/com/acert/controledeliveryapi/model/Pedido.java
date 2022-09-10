@@ -22,6 +22,8 @@ public class Pedido  implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant momento;
 
+    private String observacao;
+
     @Enumerated(EnumType.STRING)
     private PedidoStatus pedidoStatus;
 
@@ -31,6 +33,11 @@ public class Pedido  implements Serializable {
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private  Cliente cliente;
+
+    @ManyToOne()
+    @JoinColumn(name = "entrega_id")
+    private Entrega entrega;
+
     @ManyToMany(cascade=CascadeType.PERSIST)
     @JoinTable(
             name = "pedido_produto",
@@ -39,17 +46,18 @@ public class Pedido  implements Serializable {
     )
     private List<Produto> produtos = new ArrayList<>();
 
-
     public Pedido() {
     }
 
-    public Pedido(Long id, Instant momento, PedidoStatus pedidoStatus, Cliente cliente, List<Produto> produtos, TipoPagamento tipoPagamento) {
+    public Pedido(Long id, Instant momento, String observacao, PedidoStatus pedidoStatus, Cliente cliente, TipoPagamento tipoPagamento, List<Produto> produtos, Entrega entrega) {
         this.id = id;
         this.momento = momento;
+        this.observacao = observacao;
         this.pedidoStatus = pedidoStatus;
         this.cliente = cliente;
-        this.produtos = produtos;
         this.tipoPagamento = tipoPagamento;
+        this.produtos = produtos;
+        this.entrega = entrega;
     }
 
     public Long getId() {
@@ -66,6 +74,14 @@ public class Pedido  implements Serializable {
 
     public void setMomento(Instant momento) {
         this.momento = momento;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 
     public PedidoStatus getPedidoStatus() {
@@ -98,12 +114,19 @@ public class Pedido  implements Serializable {
         return produtos;
     }
 
-
     public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
     }
 
-   /* public Double getTotal(){
+    public Entrega getEntrega() {
+        return entrega;
+    }
+
+    public void setEntraga(Entrega entraga) {
+        this.entrega = entraga;
+    }
+
+    /* public Double getTotal(){
         double soma = 0;
         for (ItensPedido x : itens){
             soma +=  x.getTotalPreco();

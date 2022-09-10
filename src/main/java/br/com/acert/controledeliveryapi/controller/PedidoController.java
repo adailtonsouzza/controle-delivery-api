@@ -1,6 +1,6 @@
 package br.com.acert.controledeliveryapi.controller;
 
-import br.com.acert.controledeliveryapi.dto.ProdutoInputDTO;
+import br.com.acert.controledeliveryapi.dto.PedidoDTO;
 import br.com.acert.controledeliveryapi.model.Pedido;
 import br.com.acert.controledeliveryapi.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/pedidos")
-public class PedidoResource {
+public class PedidoController {
 
     @Autowired
     private PedidoService service;
@@ -29,9 +29,22 @@ public class PedidoResource {
     }
     @ResponseStatus(code = HttpStatus.CREATED)
     @PostMapping
-    public Pedido solicitar(@RequestBody ProdutoInputDTO produtoInputDTO){
-        Pedido pedido = service.solicitar(produtoInputDTO);
+    public Pedido solicitar(@RequestBody PedidoDTO pedidoDTO){
+        Pedido pedido = service.solicitar(pedidoDTO);
         return pedido;
 
+    }
+
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Pedido> alterarPedido(@PathVariable Long id, @RequestBody PedidoDTO pedidoDTO){
+        Pedido pedidoAtualizado = service.alterarPedido(id, pedidoDTO);
+        return ResponseEntity.ok().body(pedidoAtualizado);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deletarPedido(@PathVariable Long id){
+        service.deletarPedido(id);
+        return ResponseEntity.noContent().build();
     }
 }

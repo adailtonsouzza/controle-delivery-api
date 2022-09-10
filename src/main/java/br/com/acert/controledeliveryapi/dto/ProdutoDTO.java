@@ -1,31 +1,23 @@
-package br.com.acert.controledeliveryapi.model;
+package br.com.acert.controledeliveryapi.dto;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import br.com.acert.controledeliveryapi.model.Pedido;
+
 import java.util.List;
-import java.util.Objects;
 
-@Entity
-@Table(name = "tb_produto")
-public class   Produto implements Serializable {
+public class ProdutoDTO {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String descricao;
     private Double preco;
 
-    @ManyToMany(mappedBy = "produtos", cascade = CascadeType.ALL)
     private List<Pedido> pedidos;
 
-
-    public Produto(){
+    public ProdutoDTO(){
 
     }
 
-    public Produto(Long id, String nome, String descricao, Double preco, List<Pedido> pedidos) {
+    public ProdutoDTO(Long id, String nome, String descricao, Double preco, List<Pedido> pedidos) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -65,20 +57,11 @@ public class   Produto implements Serializable {
         this.preco = preco;
     }
 
-
-
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Produto produto = (Produto) o;
-        return Objects.equals(id, produto.id);
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public void setPedidos(List<Pedido> pedido) {
+        this.pedidos = pedido;
     }
 }

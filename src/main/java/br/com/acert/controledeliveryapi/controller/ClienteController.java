@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/clientes")
-public class ClienteResource {
+public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
