@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Arrays;
 
@@ -24,7 +25,8 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private ProdutoRepository produtoRepository;
 
-
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
 
     @Override
@@ -46,8 +48,8 @@ public class TestConfig implements CommandLineRunner {
         produtoRepository.saveAll(Arrays.asList(produto1, produto2, produto3, produto4, produto5));*/
 
 
-        Cliente cliente1 = new Cliente(null, "Adailton Souza", "75999193244", "12345");
-        Cliente cliente2 = new Cliente(null, "Flaviane Dantas", "75999994098", "12345");
+        Cliente cliente1 = new Cliente(null, "Adailton Souza", "75999193244", encoder.encode("12345"));
+        Cliente cliente2 = new Cliente(null, "Flaviane Dantas", "75999994098", encoder.encode("12345"));
 
         clienteRepository.saveAll(Arrays.asList(cliente1, cliente2));
 
