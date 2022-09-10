@@ -21,23 +21,20 @@ public class PedidoDTO {
 
     private Long clienteId;
 
-    private Long produtoId;
 
     private Long entregaId;
 
-    private List<Produto> produtos;
+
 
     public PedidoDTO(){
 
     }
-    public PedidoDTO(Instant momento, String observacao, PedidoStatus pedidoStatus, TipoPagamento tipoPagamento, Long clienteId, List<Produto> produtos, Long produtoId, Long entregaId) {
+    public PedidoDTO(Instant momento, String observacao, PedidoStatus pedidoStatus, TipoPagamento tipoPagamento, Long clienteId, Long entregaId) {
         this.momento = momento;
         this.observacao = observacao;
         this.pedidoStatus = pedidoStatus;
         this.tipoPagamento = tipoPagamento;
         this.clienteId = clienteId;
-        this.produtos = produtos;
-        this.produtoId = produtoId;
         this.entregaId = entregaId;
     }
 
@@ -81,21 +78,7 @@ public class PedidoDTO {
         this.clienteId = clienteId;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
-    }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
-    }
-
-    public Long getProdutoId() {
-        return produtoId;
-    }
-
-    public void setProdutoId(Long produtoId) {
-        this.produtoId = produtoId;
-    }
 
     public Long getEntregaId() {
         return entregaId;

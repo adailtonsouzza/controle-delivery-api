@@ -42,7 +42,7 @@ public class PedidoService {
         Pedido pedido = new Pedido();
         pedido.setEntraga(entrega);
         pedido.setCliente(cliente);
-        pedido.setProdutos(pedidoDTO.getProdutos());
+      //  pedido.setProdutos(pedidoDTO.getProdutos());
         pedido.setPedidoStatus(PedidoStatus.ANDAMENTO);
         pedido.setMomento(Instant.now());
         pedido.setObservacao(pedidoDTO.getObservacao());

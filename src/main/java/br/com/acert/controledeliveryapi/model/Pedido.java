@@ -38,25 +38,28 @@ public class Pedido  implements Serializable {
     @JoinColumn(name = "entrega_id")
     private Entrega entrega;
 
-    @ManyToMany(cascade=CascadeType.PERSIST)
+   /* @ManyToMany(cascade=CascadeType.PERSIST)
     @JoinTable(
             name = "pedido_produto",
             joinColumns = @JoinColumn(name = "pedido_id"),
             inverseJoinColumns = @JoinColumn(name = "produto_id")
     )
-    private List<Produto> produtos = new ArrayList<>();
+    private List<Produto> produtos = new ArrayList<>(); */
+
+    @OneToMany(mappedBy = "id.pedido")
+    private List<PedidoItem> itens = new ArrayList<>();
 
     public Pedido() {
     }
 
-    public Pedido(Long id, Instant momento, String observacao, PedidoStatus pedidoStatus, Cliente cliente, TipoPagamento tipoPagamento, List<Produto> produtos, Entrega entrega) {
+    public Pedido(Long id, Instant momento, String observacao, PedidoStatus pedidoStatus, Cliente cliente, TipoPagamento tipoPagamento, Entrega entrega) {
         this.id = id;
         this.momento = momento;
         this.observacao = observacao;
         this.pedidoStatus = pedidoStatus;
         this.cliente = cliente;
         this.tipoPagamento = tipoPagamento;
-        this.produtos = produtos;
+
         this.entrega = entrega;
     }
 
@@ -102,6 +105,10 @@ public class Pedido  implements Serializable {
         this.cliente = cliente;
     }
 
+    public List<PedidoItem> getItens(){
+        return itens;
+    }
+
     public TipoPagamento getTipoPagamento() {
         return tipoPagamento;
     }
@@ -110,13 +117,7 @@ public class Pedido  implements Serializable {
         this.tipoPagamento = tipoPagamento;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
-    }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
-    }
 
     public Entrega getEntrega() {
         return entrega;

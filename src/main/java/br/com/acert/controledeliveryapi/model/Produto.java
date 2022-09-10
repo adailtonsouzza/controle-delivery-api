@@ -17,20 +17,20 @@ public class   Produto implements Serializable {
     private String descricao;
     private Double preco;
 
-    @ManyToMany(mappedBy = "produtos", cascade = CascadeType.ALL)
-    private List<Pedido> pedidos;
+   /* @ManyToMany(mappedBy = "produtos", cascade = CascadeType.ALL)
+    private List<Pedido> pedidos; */
 
 
     public Produto(){
 
     }
 
-    public Produto(Long id, String nome, String descricao, Double preco, List<Pedido> pedidos) {
+    public Produto(Long id, String nome, String descricao, Double preco) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
-        this.pedidos = pedidos;
+
     }
 
     public Long getId() {
@@ -64,9 +64,6 @@ public class   Produto implements Serializable {
     public void setPreco(Double preco) {
         this.preco = preco;
     }
-
-
-
 
 
     @Override
