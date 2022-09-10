@@ -127,13 +127,13 @@ public class Pedido  implements Serializable {
         this.entrega = entraga;
     }
 
-    /* public Double getTotal(){
+     public Double getTotal(){
         double soma = 0;
-        for (ItensPedido x : itens){
-            soma +=  x.getTotalPreco();
+        for (PedidoItem x : itens){
+            soma +=  x.getSubTotal();
         }
         return soma;
-    } */
+    }
 
     @Override
     public boolean equals(Object o) {

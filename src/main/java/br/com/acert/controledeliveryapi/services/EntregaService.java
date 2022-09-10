@@ -46,7 +46,7 @@ public class EntregaService {
 
     }
 
-    private void alterarDadosEndereco(Entrega entrega, EntregaDTO entregaDTO) {
+    public void alterarDadosEndereco(Entrega entrega, EntregaDTO entregaDTO) {
         entrega.setNome(entregaDTO.getNome());
         entrega.setLogradouro(entregaDTO.getLogradouro());
         entrega.setNumero(entregaDTO.getNumero());

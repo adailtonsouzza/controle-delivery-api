@@ -5,4 +5,5 @@ import br.com.acert.controledeliveryapi.model.pk.PedidoItemPK;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PedidoItemRepository extends JpaRepository<PedidoItem, PedidoItemPK> {
+
 }
