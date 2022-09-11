@@ -154,3 +154,6 @@ Para um bom funcionamento da API temos que seguir um fluxo.
 </br>
 </br>
 Obs:Podemos adicionar vários produtos em um só pedido, pra isso é só deixar o Id do mesmo peiddo e ir alterando o Id do produto. 
+</br>
+</br>
+7° Depois que fazer o passo a passa pode dar um GET novamente em pedido por id ou buscar todos e vai ver os relacionamentos de entrega, produto e pedidos e etc...
