@@ -19,11 +19,6 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    @Autowired
-    private PedidoRepository pedidoRepository;
-
-    @Autowired
-    private ProdutoRepository produtoRepository;
 
     @Autowired
     private BCryptPasswordEncoder encoder;
@@ -33,40 +28,11 @@ public class TestConfig implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
 
-/*
-        Produto produto1 = new Produto(null, "Frango/Catupiry", "Pastel de frango com catupiry", 6.5 );
-        Produto produto2 = new Produto(null, "Misto", "Pastel com queijo e presunto", 7.0);
-        Produto produto3 = new Produto(null, "Suco Laranja", "Suco de laranja com gelo e limão", 5.0);
-        Produto produto4 = new Produto(null, "Coca-Coca", "Coca-Coca com limão e gelo", 5.0);
-        Produto produto5 = new Produto(null, "Guarana", "muito bom", 3.99);
+        Cliente admin = new Cliente(null, "admin", "99999999999", encoder.encode("admin"));
 
 
-        produtoRepository.saveAll(Arrays.asList(produto1, produto2, produto3, produto4, produto5));
+        clienteRepository.save(admin);
 
 
-
-        produtoRepository.saveAll(Arrays.asList(produto1, produto2, produto3, produto4, produto5));*/
-
-
-        Cliente cliente1 = new Cliente(null, "Adailton Souza", "75999193244", encoder.encode("12345"));
-        Cliente cliente2 = new Cliente(null, "Flaviane Dantas", "75999994098", encoder.encode("12345"));
-
-        clienteRepository.saveAll(Arrays.asList(cliente1, cliente2));
-
-    /*
-        Pedido pedido1 = new Pedido(null, Instant.parse("2022-09-07T19:53:07Z"), PedidoStatus.ENVIADO, cliente1);
-        Pedido pedido2 = new Pedido(null, Instant.parse("2022-09-07T03:42:10Z"), PedidoStatus.ANDAMENTO, cliente2);
-        Pedido pedido3 = new Pedido(null, Instant.parse("2022-09-07T15:21:22Z"), PedidoStatus.ANDAMENTO, cliente1);
-        Pedido pedido4 = new Pedido(null, Instant.parse("2022-09-07T21:49:07Z"), PedidoStatus.ENVIADO, cliente2);
-
-
-        pedidoRepository.saveAll(Arrays.asList(pedido1,pedido2,pedido3, pedido4));
-
-
-
-        Pagamento pagamento = new Pagamento(null, Instant.parse("2022-09-07T21:53:07Z"),pedido4);
-
-
-        pedidoRepository.save(pedido4); */
     }
 }
