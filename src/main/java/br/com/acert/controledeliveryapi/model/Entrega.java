@@ -1,6 +1,8 @@
 package br.com.acert.controledeliveryapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -22,17 +24,27 @@ public class Entrega implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonProperty(value = "nome")
+    @Schema(example = "xxx", defaultValue = "nome")
     @Column( name = "destinatario_nome")
     @NotBlank
     private String nome;
+    @JsonProperty(value = "logradouro")
+    @Schema(example = "xxx", defaultValue = "logradouro")
     @Column( name = "destinatario_logradouro")
     @NotBlank
     private String  logradouro;
+    @JsonProperty(value = "numero")
+    @Schema(example = "xxx", defaultValue = "numero")
     @Column( name = "destinatario_numero")
     @NotBlank
     private String numero;
+    @JsonProperty(value = "complemento")
+    @Schema(example = "xxx", defaultValue = "complemento")
     @Column( name = "destinatario_complemento")
     private String complemento;
+    @JsonProperty(value = "bairro")
+    @Schema(example = "xxx", defaultValue = "bairro")
     @Column( name = "destinatario_bairro")
     @NotBlank
     private String  bairro;

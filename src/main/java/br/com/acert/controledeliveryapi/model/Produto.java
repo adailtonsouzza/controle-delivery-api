@@ -1,5 +1,8 @@
 package br.com.acert.controledeliveryapi.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -13,13 +16,15 @@ public class   Produto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonProperty(value = "nome")
+    @Schema(example = "XX", defaultValue = "nome")
     private String nome;
+    @JsonProperty(value = "descricao")
+    @Schema(example = "XX", defaultValue = "descricao")
     private String descricao;
+    @JsonProperty(value = "preco")
+    @Schema(example = "1.50", defaultValue = "preco")
     private Double preco;
-
-   /* @ManyToMany(mappedBy = "produtos", cascade = CascadeType.ALL)
-    private List<Pedido> pedidos; */
-
 
     public Produto(){
 

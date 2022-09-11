@@ -3,6 +3,8 @@ package br.com.acert.controledeliveryapi.model;
 import br.com.acert.controledeliveryapi.model.enums.PedidoStatus;
 import br.com.acert.controledeliveryapi.model.enums.TipoPagamento;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -22,29 +24,30 @@ public class Pedido  implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant momento;
 
+    @JsonProperty(value = "observacao")
+    @Schema(example = "xxx", defaultValue = "observacao")
     private String observacao;
 
+    @JsonProperty(value = "pedidoStatus")
+    @Schema(example = "ANDAMENTO", defaultValue = "pedidoStatus")
     @Enumerated(EnumType.STRING)
     private PedidoStatus pedidoStatus;
-
+    @JsonProperty(value = "tipoPagamento")
+    @Schema(example = "DINEHIRO", defaultValue = "tipoPagamento")
     @Enumerated(EnumType.STRING)
     private TipoPagamento tipoPagamento;
 
+    @JsonProperty(value = "cliente")
+    @Schema(example = "1", defaultValue = "cliente")
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private  Cliente cliente;
 
+    @JsonProperty(value = "entrega")
+    @Schema(example = "1", defaultValue = "entrega")
     @ManyToOne()
     @JoinColumn(name = "entrega_id")
     private Entrega entrega;
-
-   /* @ManyToMany(cascade=CascadeType.PERSIST)
-    @JoinTable(
-            name = "pedido_produto",
-            joinColumns = @JoinColumn(name = "pedido_id"),
-            inverseJoinColumns = @JoinColumn(name = "produto_id")
-    )
-    private List<Produto> produtos = new ArrayList<>(); */
 
     @OneToMany(mappedBy = "id.pedido")
     private List<PedidoItem> itens = new ArrayList<>();
