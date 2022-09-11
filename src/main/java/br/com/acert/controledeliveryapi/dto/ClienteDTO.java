@@ -2,9 +2,6 @@ package br.com.acert.controledeliveryapi.dto;
 
 import br.com.acert.controledeliveryapi.model.Cliente;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class ClienteDTO {
 
     private Long id;

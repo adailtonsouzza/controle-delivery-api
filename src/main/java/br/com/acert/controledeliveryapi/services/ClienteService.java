@@ -2,6 +2,7 @@ package br.com.acert.controledeliveryapi.services;
 
 import br.com.acert.controledeliveryapi.dto.ClienteDTO;
 import br.com.acert.controledeliveryapi.model.Cliente;
+import br.com.acert.controledeliveryapi.model.form.ClienteForm;
 import br.com.acert.controledeliveryapi.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,7 +30,7 @@ public class ClienteService {
        return obj.get();
     }
 
-    public Cliente cadastrar(ClienteDTO clienteDTO){
+    public Cliente cadastrar(ClienteForm clienteDTO){
       Cliente cliente = new Cliente();
       cliente.setNome(clienteDTO.getNome());
       cliente.setTelefone(clienteDTO.getTelefone());
@@ -42,15 +43,18 @@ public class ClienteService {
         clienteRepository.deleteById(id);
     }
 
-    public Cliente alterar(Long id, ClienteDTO clienteDTO){
-        Cliente cliente = clienteRepository.getOne(id);
-        alterarDados(cliente, clienteDTO);
-        return clienteRepository.save(cliente);
+    public Cliente alterar(Long id, ClienteForm clienteForm){
+       Optional<Cliente>  cliente = clienteRepository.findById(id);
+       if (cliente.isPresent()){
+           alterarDados(cliente.get(), clienteForm);
+           return clienteRepository.save(cliente.get());
+       }
+        throw new RuntimeException("Entrega não encontrada!");
     }
 
-    private void alterarDados(Cliente cliente, ClienteDTO clienteDTO) {
-        cliente.setNome(clienteDTO.getNome());
-        cliente.setTelefone(clienteDTO.getTelefone());
+    private void alterarDados(Cliente cliente, ClienteForm clienteForm) {
+        cliente.setNome(clienteForm.getNome());
+        cliente.setTelefone(clienteForm.getTelefone());
         cliente.setSenha(encoder.encode(cliente.getSenha()));
     }
 }

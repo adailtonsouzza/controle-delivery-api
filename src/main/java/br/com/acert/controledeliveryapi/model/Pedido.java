@@ -3,8 +3,6 @@ package br.com.acert.controledeliveryapi.model;
 import br.com.acert.controledeliveryapi.model.enums.PedidoStatus;
 import br.com.acert.controledeliveryapi.model.enums.TipoPagamento;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,27 +22,22 @@ public class Pedido  implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant momento;
 
-    @JsonProperty(value = "observacao")
-    @Schema(example = "xxx", defaultValue = "observacao")
+
     private String observacao;
 
-    @JsonProperty(value = "pedidoStatus")
-    @Schema(example = "ANDAMENTO", defaultValue = "pedidoStatus")
+
     @Enumerated(EnumType.STRING)
     private PedidoStatus pedidoStatus;
-    @JsonProperty(value = "tipoPagamento")
-    @Schema(example = "DINEHIRO", defaultValue = "tipoPagamento")
+
     @Enumerated(EnumType.STRING)
     private TipoPagamento tipoPagamento;
 
-    @JsonProperty(value = "cliente")
-    @Schema(example = "1", defaultValue = "cliente")
+
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private  Cliente cliente;
 
-    @JsonProperty(value = "entrega")
-    @Schema(example = "1", defaultValue = "entrega")
+
     @ManyToOne()
     @JoinColumn(name = "entrega_id")
     private Entrega entrega;
@@ -57,9 +50,9 @@ public class Pedido  implements Serializable {
 
     public Pedido(Long id, Instant momento, String observacao, PedidoStatus pedidoStatus, Cliente cliente, TipoPagamento tipoPagamento, Entrega entrega) {
         this.id = id;
-        this.momento = momento;
+        this.momento = Instant.now();
         this.observacao = observacao;
-        this.pedidoStatus = pedidoStatus;
+        this.pedidoStatus = PedidoStatus.ANDAMENTO;
         this.cliente = cliente;
         this.tipoPagamento = tipoPagamento;
 

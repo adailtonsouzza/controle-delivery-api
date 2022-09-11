@@ -1,28 +1,31 @@
 package br.com.acert.controledeliveryapi.dto;
 
 import br.com.acert.controledeliveryapi.model.Pedido;
+import br.com.acert.controledeliveryapi.model.Produto;
 
+import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class ProdutoDTO {
+public class ProdutoDTO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String nome;
     private String descricao;
     private Double preco;
 
-    private List<Pedido> pedidos;
-
     public ProdutoDTO(){
 
     }
 
-    public ProdutoDTO(Long id, String nome, String descricao, Double preco, List<Pedido> pedidos) {
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.preco = preco;
-        this.pedidos = pedidos;
+    public ProdutoDTO(Produto produto) {
+        this.id = produto.getId();
+        this.nome = produto.getNome();
+        this.descricao = produto.getDescricao();
+        this.preco = produto.getPreco();
+
     }
 
     public Long getId() {
@@ -57,11 +60,12 @@ public class ProdutoDTO {
         this.preco = preco;
     }
 
-    public List<Pedido> getPedidos() {
-        return pedidos;
+    public static List<ProdutoDTO> converter(List<Produto> produtos){
+        return produtos.stream().map(produto -> {
+            ProdutoDTO dto = new ProdutoDTO(produto);
+            return dto;
+        }).collect(Collectors.toList());
     }
 
-    public void setPedidos(List<Pedido> pedido) {
-        this.pedidos = pedido;
-    }
+
 }

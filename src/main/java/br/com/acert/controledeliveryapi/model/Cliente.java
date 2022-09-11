@@ -1,8 +1,6 @@
 package br.com.acert.controledeliveryapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -20,15 +18,12 @@ public class Cliente  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JsonProperty(value = "nome")
-    @Schema(example = "xxx", defaultValue = "nome")
+
     @NotNull
     private String nome;
-    @JsonProperty(value = "telefone")
-    @Schema(example = "xxx", defaultValue = "telefone")
+
     private String telefone;
-    @JsonProperty(value = "senha")
-    @Schema(example = "xxx", defaultValue = "senha")
+
     @NotBlank
     private String senha;
 

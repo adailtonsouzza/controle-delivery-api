@@ -1,7 +1,5 @@
 package br.com.acert.controledeliveryapi.dto;
 
-import br.com.acert.controledeliveryapi.model.Pedido;
-
 public class PedidoItemDTO {
 
     private Integer quantidade;

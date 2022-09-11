@@ -2,8 +2,6 @@ package br.com.acert.controledeliveryapi.model;
 
 import br.com.acert.controledeliveryapi.model.pk.PedidoItemPK;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -17,11 +15,9 @@ public class PedidoItem implements Serializable {
 
     @EmbeddedId
     private PedidoItemPK id = new PedidoItemPK();
-    @JsonProperty(value = "quantidade")
-    @Schema(example = "1", defaultValue = "quantidade")
+
     private Integer quantidade;
-    @JsonProperty(value = "preco")
-    @Schema(example = "1.50", defaultValue = "preco")
+
     private  Double preco;
 
     public PedidoItem(){

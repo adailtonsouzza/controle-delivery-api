@@ -1,54 +1,28 @@
-package br.com.acert.controledeliveryapi.dto;
-
-import org.springframework.stereotype.Service;
+package br.com.acert.controledeliveryapi.model.form;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 
-@Service
-public class EntregaDTO {
-
-    private Long id;
-
-    private Long pedidoId;
+public class EntregaForm {
 
     @Column( name = "destinatario_nome")
     @NotBlank
     private String nome;
+
     @Column( name = "destinatario_logradouro")
     @NotBlank
     private String  logradouro;
+
     @Column( name = "destinatario_numero")
     @NotBlank
     private String numero;
+
     @Column( name = "destinatario_complemento")
     private String complemento;
+
     @Column( name = "destinatario_bairro")
     @NotBlank
     private String  bairro;
-
-    public EntregaDTO(){
-    }
-
-    public EntregaDTO(Long id, Long pedidoId, String nome, String logradouro, String numero, String complemento, String bairro) {
-        this.id = id;
-        this.pedidoId = pedidoId;
-        this.nome = nome;
-        this.logradouro = logradouro;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.bairro = bairro;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
 
     public String getNome() {
         return nome;

@@ -1,12 +1,9 @@
 package br.com.acert.controledeliveryapi.dto;
 
-import br.com.acert.controledeliveryapi.model.Produto;
 import br.com.acert.controledeliveryapi.model.enums.PedidoStatus;
 import br.com.acert.controledeliveryapi.model.enums.TipoPagamento;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 
 public class PedidoDTO {
 
