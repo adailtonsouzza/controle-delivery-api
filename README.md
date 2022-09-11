@@ -1,5 +1,7 @@
 # controle-delivery-api
 
+Link da API em produção: https://controle-delivery-api-pro.herokuapp.com/
+
 Para fazer qualquer tipo de requisição temos que ter o token,
 deixei um cliente já criado para gerar o token o campo (nome) é nosso atribudo para usuario então: nome: admin, senha: admin.
 <br>
