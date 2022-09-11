@@ -39,7 +39,7 @@ public class PedidoItemService {
 
     }
 
-    public PedidoItem alterarItem(PedidoItemPK id, PedidoItemDTO pedidoItemDTO){
+   /* public PedidoItem alterarItem(PedidoItemPK id, PedidoItemDTO pedidoItemDTO){
         PedidoItem pedidoItem = pedidoItemRepository.getOne(id);
         alterarDadosItem(pedidoItem, pedidoItemDTO);
         return pedidoItemRepository.save(pedidoItem);
@@ -53,6 +53,6 @@ public class PedidoItemService {
 
     public void deletarItem(PedidoItemPK id){
         pedidoItemRepository.deleteById(id);
-    }
+    }*/
 
 }

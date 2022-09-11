@@ -1,5 +1,6 @@
 package br.com.acert.controledeliveryapi.controller;
 
+import br.com.acert.controledeliveryapi.controller.apidoc.IPedidoItemControllerApiDocs;
 import br.com.acert.controledeliveryapi.dto.PedidoItemDTO;
 import br.com.acert.controledeliveryapi.model.PedidoItem;
 import br.com.acert.controledeliveryapi.model.pk.PedidoItemPK;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/pedidoItens")
-public class PedidoItemController {
+public class PedidoItemController implements IPedidoItemControllerApiDocs {
 
     @Autowired
     private PedidoItemService service;
@@ -31,7 +32,7 @@ public class PedidoItemController {
         return  pedidoItem;
     }
 
-    @PutMapping(value = "/{id}")
+    /*@PutMapping(value = "/{id}")
     public ResponseEntity<PedidoItem> alterarItem(@PathVariable PedidoItemPK id, @RequestBody PedidoItemDTO pedidoItemDTO){
         PedidoItem pedidoItem = service.alterarItem(id, pedidoItemDTO);
         return ResponseEntity.ok().body(pedidoItem);
@@ -41,5 +42,5 @@ public class PedidoItemController {
     public ResponseEntity<Void> deletarItem(@PathVariable PedidoItemPK id){
         service.deletarItem(id);
         return ResponseEntity.noContent().build();
-    }
+    }*/
 }

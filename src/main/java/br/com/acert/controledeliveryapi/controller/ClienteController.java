@@ -1,5 +1,6 @@
 package br.com.acert.controledeliveryapi.controller;
 
+import br.com.acert.controledeliveryapi.controller.apidoc.IClienteControllerApiDocs;
 import br.com.acert.controledeliveryapi.dto.ClienteDTO;
 import br.com.acert.controledeliveryapi.model.Cliente;
 import br.com.acert.controledeliveryapi.services.ClienteService;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/clientes")
-public class ClienteController {
+public class ClienteController implements IClienteControllerApiDocs {
 
     @Autowired
     private ClienteService clienteService;

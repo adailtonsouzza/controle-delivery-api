@@ -1,5 +1,6 @@
 package br.com.acert.controledeliveryapi.controller;
 
+import br.com.acert.controledeliveryapi.controller.apidoc.IProdutoControllerApiDocs;
 import br.com.acert.controledeliveryapi.dto.ProdutoDTO;
 import br.com.acert.controledeliveryapi.model.Produto;
 import br.com.acert.controledeliveryapi.services.ProdutoService;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/produtos")
-public class ProdutoController {
+public class ProdutoController implements IProdutoControllerApiDocs {
 
     @Autowired
     private ProdutoService service;

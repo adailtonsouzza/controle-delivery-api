@@ -1,5 +1,6 @@
 package br.com.acert.controledeliveryapi.controller;
 
+import br.com.acert.controledeliveryapi.controller.apidoc.IEntregaControllerApiDocs;
 import br.com.acert.controledeliveryapi.dto.EntregaDTO;
 import br.com.acert.controledeliveryapi.model.Entrega;
 import br.com.acert.controledeliveryapi.services.EntregaService;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/entregas")
-public class EntregaController {
+public class EntregaController implements IEntregaControllerApiDocs {
     @Autowired
     private EntregaService service;
 

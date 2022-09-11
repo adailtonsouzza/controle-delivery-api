@@ -1,5 +1,6 @@
 package br.com.acert.controledeliveryapi.controller;
 
+import br.com.acert.controledeliveryapi.controller.apidoc.IPedidoControllerApiDocs;
 import br.com.acert.controledeliveryapi.dto.PedidoDTO;
 import br.com.acert.controledeliveryapi.model.Pedido;
 import br.com.acert.controledeliveryapi.services.PedidoService;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/pedidos")
-public class PedidoController {
+public class PedidoController implements IPedidoControllerApiDocs {
 
     @Autowired
     private PedidoService service;
