@@ -13,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.util.Arrays;
 
 @Configuration
-@Profile("dev")
+@Profile("test")
 public class TestConfig implements CommandLineRunner {
 
     @Autowired
