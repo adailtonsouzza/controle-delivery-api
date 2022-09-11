@@ -1,6 +1,23 @@
 # controle-delivery-api
 
 Link da API em produção: https://controle-delivery-api-pro.herokuapp.com/
+</br>
+</br>
+Link do SWAGGER DA  API em produção: https://controle-delivery-api-pro.herokuapp.com/swagger
+</br>
+</br>
+
+Link do SWAGGER DA  API em desenvolvimento: http://localhost:8080/swagger
+</br>
+</br>
+
+<h1>Seguir o Passo a Passo. A partir de linha 106</h1>
+<h2>Login e senha criado para realizar os testes</h2>
+<h3>nome: admin</h3>
+<h3>senha: admin</h3>
+</br>
+</br>
+
 
 Para fazer qualquer tipo de requisição temos que ter o token,
 deixei um cliente já criado para gerar o token o campo (nome) é nosso atribudo para usuario então: nome: admin, senha: admin.
@@ -86,7 +103,7 @@ Delete
 </br>
 </br>
 
-!!IMPORTANTE 
+<h1>IMPORTANTE</h1> 
 </br>
 </br>
 
