@@ -23,10 +23,24 @@ Para fazer qualquer tipo de requisição temos que ter o token,
 deixei um cliente já criado para gerar o token o campo (nome) é nosso atribudo para usuario então: nome: admin, senha: admin.
 <br>
 
-endpoints
+<h1>endpoints</h1>
 </br>
 </br>
-GetAll
+<h2>Get</h2>
+</br>
+</br>
+
+/clientes
+
+/pedidos
+
+/entregas
+
+/produtos
+
+/pedidoItens
+
+<h2>Post</h2>
 </br>
 </br>
 /login
@@ -41,25 +55,9 @@ GetAll
 
 /pedidoItens
 
-Post
+<h2>GetId</h2>
 </br>
 </br>
-/login
-
-/clientes
-
-/pedidos
-
-/entregas
-
-/produtos
-
-/pedidoItens
-
-GetId
-</br>
-</br>
-/login/{id}
 
 /clientes/{id}
 
@@ -71,10 +69,9 @@ GetId
 
 /pedidoItens/{id}
 
-Put
+<h2>Put</h2>
 </br>
 </br>
-/login/{id}
 
 /clientes/{id}
 
@@ -86,10 +83,9 @@ Put
 
 /pedidoItens/{id}
 
-Delete
+<h2>Delete</h2>
 </br>
 </br>
-/login/{id}
 
 /clientes/{id}
 
@@ -107,17 +103,19 @@ Delete
 </br>
 </br>
 
-Para um bom funcionamento da API temos que seguir um fluxo.
+<h2>Para um bom funcionamento da API seguir um fluxo.</h2>
 </br>
 </br>
 
-1° Gerar o token (Com o usuario admin) 
+<h3>1° Gerar o token (Com o usuario admin)</h3>
+<h4>Para realizar os testes no Swagger, pegar o token gerado pelo POSTMAN ou alguma ferramente de preferência. Não precisar copiar o BEARER.</h4>
+<h5>Já existe um usuário criado, só seguir o JSON abaixo para realizar o login</h5>
 </br>
 </br>
 {"nome": admin, "senha": "admin"}
 </br>
 </br>
-2° Criar um cliente caso acha necessário ou usar o admin.
+<h3>2° Criar um cliente caso acha necessário ou usar o admin.</h3>
 </br>
 </br>
 {
@@ -127,7 +125,7 @@ Para um bom funcionamento da API temos que seguir um fluxo.
 }
 </br>
 </br>
-3° Cadastrar um endereço para Entrega
+<h3>3° Cadastrar um endereço para Entrega</h3>
 </br>
 </br>
 {   
@@ -139,7 +137,7 @@ Para um bom funcionamento da API temos que seguir um fluxo.
 }
 </br>
 </br>
-4° Cadastrar vários ou um produto, fica a seu critério.
+<h3>4° Cadastrar vários ou um produto, fica a seu critério.</h3>
 </br>
 </br>
 {
@@ -149,7 +147,7 @@ Para um bom funcionamento da API temos que seguir um fluxo.
 }
 </br>
 </br>
-5° Inserir um novo pedido 
+<h3>5° Inserir um novo pedido </h3>
 </br>
 </br>
     {
@@ -160,7 +158,7 @@ Para um bom funcionamento da API temos que seguir um fluxo.
     }
 </br>
 </br>
-6° Adicionar um PedidoItem que é a ligação dos produtos com o pedido que o cliente criou.
+<h3>6° Adicionar um PedidoItem que é a ligação dos produtos com o pedido que o cliente criou.</h3>
 </br>
 </br>
 {
@@ -170,7 +168,7 @@ Para um bom funcionamento da API temos que seguir um fluxo.
 }
 </br>
 </br>
-Obs:Podemos adicionar vários produtos em um só pedido, pra isso é só deixar o Id do mesmo peiddo e ir alterando o Id do produto. 
+<h3>Obs:Podemos adicionar vários produtos em um só pedido, pra isso é só deixar o Id do mesmo peiddo e ir alterando o Id do produto. </h3>
 </br>
 </br>
-7° Depois que fazer o passo a passa pode dar um GET novamente em pedido por id ou buscar todos e vai ver os relacionamentos de entrega, produto e pedidos e etc...
+<h3>7° Depois que fazer o passo a passa pode dar um GET novamente em pedido por id ou buscar todos e vai ver os relacionamentos de entrega, produto e pedidos e etc...</h3>
