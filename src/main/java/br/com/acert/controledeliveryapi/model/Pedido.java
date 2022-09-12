@@ -28,7 +28,6 @@ public class Pedido  implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private PedidoStatus pedidoStatus;
-
     @Enumerated(EnumType.STRING)
     private TipoPagamento tipoPagamento;
 
@@ -50,9 +49,9 @@ public class Pedido  implements Serializable {
 
     public Pedido(Long id, Instant momento, String observacao, PedidoStatus pedidoStatus, Cliente cliente, TipoPagamento tipoPagamento, Entrega entrega) {
         this.id = id;
-        this.momento = Instant.now();
+        this.momento = momento;
         this.observacao = observacao;
-        this.pedidoStatus = PedidoStatus.ANDAMENTO;
+        this.pedidoStatus = pedidoStatus;
         this.cliente = cliente;
         this.tipoPagamento = tipoPagamento;
 

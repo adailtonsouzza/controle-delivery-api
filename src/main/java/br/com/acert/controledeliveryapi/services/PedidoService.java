@@ -44,6 +44,8 @@ public class PedidoService {
         Pedido pedido = new Pedido();
         pedido.setEntraga(entrega);
         pedido.setCliente(cliente);
+        pedido.setPedidoStatus(PedidoStatus.ANDAMENTO);
+        pedido.setMomento(Instant.now());
         pedido.setObservacao(pedidoForm.getObservacao());
         pedido.setTipoPagamento(pedidoForm.getTipoPagamento());
 
