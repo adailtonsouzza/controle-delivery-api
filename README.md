@@ -11,7 +11,7 @@ Link do SWAGGER DA  API em desenvolvimento: http://localhost:8080/swagger
 </br>
 </br>
 
-<h1>Seguir o Passo a Passo. A partir de linha 106</h1>
+<h1>Ler o README completo para entender o fluxo da API.</h1>
 <h2>Login e senha criado para realizar os testes</h2>
 <h3>nome: admin</h3>
 <h3>senha: admin</h3>
@@ -20,9 +20,10 @@ Link do SWAGGER DA  API em desenvolvimento: http://localhost:8080/swagger
 
 
 Para fazer qualquer tipo de requisição temos que ter o token,
-deixei um cliente já criado para gerar o token o campo (nome) é nosso atribudo para usuario então: nome: admin, senha: admin.
+deixei um cliente já criado para gerar o token: nome: admin, senha: admin.
 <br>
-
+Gerar token gerado pelo POSTMAN ou alguma ferramente de preferência. Não precisa copiar o BEARER.
+<br>
 <h1>endpoints</h1>
 </br>
 </br>
@@ -103,12 +104,12 @@ deixei um cliente já criado para gerar o token o campo (nome) é nosso atribudo
 </br>
 </br>
 
-<h2>Para um bom funcionamento da API seguir um fluxo.</h2>
+<h2>Para um bom funcionamento da API seguir o fluxo.</h2>
 </br>
 </br>
 
 <h3>1° Gerar o token (Com o usuario admin)</h3>
-<h4>Para realizar os testes no Swagger, pegar o token gerado pelo POSTMAN ou alguma ferramente de preferência. Não precisar copiar o BEARER.</h4>
+<h4>Para realizar os testes no Swagger, pegar o token gerado pelo POSTMAN ou alguma ferramente de preferência. Não precisa copiar o BEARER.</h4>
 <h5>Já existe um usuário criado, só seguir o JSON abaixo para realizar o login</h5>
 </br>
 </br>
